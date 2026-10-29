@@ -1,0 +1,9 @@
+-- Code for finding the 2nd highest salary
+WITH second_highest AS (
+SELECT 
+    employee_id,
+    name,
+    salary,
+    DENSE_RANK() OVER (ORDER BY SALARY DESC) AS rnk
+FROM employees
+) SELECT salary FROM second_highest WHERE rnk =2;
